@@ -2,13 +2,13 @@ package uk.lewdev.standmodels.parser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
-
-import uk.lewdev.standmodels.utils.UMaterial;
 
 /**
  * Parses generated command block String from https://mrgarretto.com/armorstand/
@@ -201,9 +201,12 @@ public class ModelSpawnCommandParser {
 						amount = Integer.parseInt(attValue);
 					}
 				}
-				
-				@SuppressWarnings("deprecation")
-				ItemStack item = UMaterial.valueOf(matName, mData);
+
+				final Optional<XMaterial> optionalXMaterial = XMaterial.matchXMaterial(matName);
+
+				if (!optionalXMaterial.isPresent()) continue;
+
+				ItemStack item = optionalXMaterial.get().parseItem();
 				item.setAmount(amount);
 				armour[i] = item;
 			}

@@ -13,7 +13,7 @@ public class ModelManager {
 	private final JavaPlugin plugin;
 
 	private Queue<Model> staticModels = new ConcurrentLinkedDeque<>();
-	private Queue<AnimatedModel> animatedModels = new ConcurrentLinkedDeque<AnimatedModel>();
+	private Queue<AnimatedModel> animatedModels = new ConcurrentLinkedDeque<>();
 
 	public ModelManager(JavaPlugin plugin) {
 		this.plugin = plugin;

@@ -118,11 +118,8 @@ public class StandModelLib {
 	public static void cleanupStands() {
 		for (World world : Bukkit.getWorlds()) {
 			for (Entity ent : world.getEntities()) {
-				if (ent.getType() == EntityType.ARMOR_STAND) {
-					if (ent.getName().equals(ModelBuildInstruction.MODEL_PART_NAME)) {
-						ent.remove();
-					}
-				}
+				if (ent.getType() != EntityType.ARMOR_STAND || !ent.getName().equals("StandModelLib-Model-Part")) continue;
+				ent.remove();
 			}
 		}
 	}
